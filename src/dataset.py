@@ -11,8 +11,6 @@ import sys
 import os
 sys.path.append(join(os.getcwd(),'mixedillWB','DeepWB','arch'))
 sys.path.append(join(os.getcwd(),'mixedillWB','DeepWB','utilities'))
-print(os.getcwd(),
-sys.path)
 import deep_wb_single_task as dwb
 from deepWB import deep_wb
 from utils import colorTempInterpolate_w_target
