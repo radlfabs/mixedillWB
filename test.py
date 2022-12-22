@@ -37,7 +37,7 @@ def test_net(net, device, data_dir, model_name, out_dir, save_weights,
   test_set = DataLoader(test_set, batch_size=batch_size, shuffle=False,
                             num_workers=0, pin_memory=True)
 
-
+  
   logging.info(f'''Starting testing:
         Model Name:            {model_name}
         Batch size:            {batch_size}
@@ -198,6 +198,7 @@ if __name__ == '__main__':
   logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
   logging.info('Testing Mixed-Ill WB correction')
   args = get_args()
+  
   device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
   if device.type != 'cpu':
     torch.cuda.set_device(args.gpu)

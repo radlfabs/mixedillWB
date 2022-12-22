@@ -3,12 +3,19 @@ from os import listdir
 from os import path
 from torch.utils.data import Dataset
 import logging
-from src import ops
+import ops
 import torch
 import numpy as np
-from DeepWB.arch import deep_wb_single_task as dwb
-from DeepWB.utilities.deepWB import deep_wb
-from DeepWB.utilities.utils import colorTempInterpolate_w_target
+from os.path import join
+import sys
+import os
+sys.path.append(join(os.getcwd(),'mixedillWB','DeepWB','arch'))
+sys.path.append(join(os.getcwd(),'mixedillWB','DeepWB','utilities'))
+print(os.getcwd(),
+sys.path)
+import deep_wb_single_task as dwb
+from deepWB import deep_wb
+from utils import colorTempInterpolate_w_target
 
 
 class Data(Dataset):

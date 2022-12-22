@@ -7,7 +7,7 @@
 __author__ = "Mahmoud Afifi"
 __credits__ = ["Mahmoud Afifi"]
 
-from .deep_wb_blocks import *
+from deep_wb_blocks import *
 
 
 class deepWBnet(nn.Module):

@@ -4,7 +4,7 @@ __credits__ = ["Mahmoud Afifi"]
 
 import torch.nn as nn
 import torch
-from src import gridnet
+import gridnet
 
 
 

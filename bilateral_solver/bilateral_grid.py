@@ -1,5 +1,9 @@
 import numpy as np
-import bilateral_solver.color_transformations as colors
+import os
+from os.path import join
+import sys
+sys.path.append(join(os.getcwd(),'mixedillWB','bilateral_solver'))
+import color_transformations as colors
 
 MAX_VAL = 255.0
 from scipy.sparse import csr_matrix

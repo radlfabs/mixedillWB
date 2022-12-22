@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from PIL import Image
-from src import imresize
+import imresize
 from sklearn.linear_model import LinearRegression
 
 mse = torch.nn.MSELoss()

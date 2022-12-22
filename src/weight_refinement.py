@@ -1,10 +1,14 @@
 import seaborn as sns
 import os
-import bilateral_solver.bilateral_grid as bilateral_grid
-import bilateral_solver.bilateral_solver as solver
+from os.path import join
+import sys
 import numpy as np
 import torch
-from src import ops
+sys.path.append(join(os.getcwd(),'mixedillWB','bilateral_solver'))
+import bilateral_grid as bilateral_grid
+import bilateral_solver as solver
+sys.path.append(join(os.getcwd(),'mixedillWB','DeepWB', 'src'))
+import ops
 
 sns.set_style('white')
 sns.set_context('notebook')
