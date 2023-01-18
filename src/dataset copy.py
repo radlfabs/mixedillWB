@@ -56,8 +56,8 @@ class Data(Dataset):
       self.deepWB_T.load_state_dict(torch.load(os.path.join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", 'DeepWB/models/net_t.pth')))
       self.deepWB_S = dwb.deepWBnet()
       self.deepWB_S.load_state_dict(torch.load(os.path.join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", 'DeepWB/models/net_s.pth')))
-      self.deepWB_T.eval().to(device='cpu')
-      self.deepWB_S.eval().to(device='cpu')
+      self.deepWB_T.eval().to(device='cuda')
+      self.deepWB_S.eval().to(device='cuda')
 
 
     logging.info(f'Creating dataset with {len(self.imgfiles)} examples')
@@ -257,7 +257,7 @@ class Data(Dataset):
         base_name = D_img_file
         base_name = path.splitext(base_name)[0]
         t_img, s_img = deep_wb(d_img, task='editing', net_s=self.deepWB_S,
-                               net_t=self.deepWB_T, device='cpu')
+                               net_t=self.deepWB_T, device='cuda')
         if self.keep_aspect_ratio:
           d_img = ops.aspect_ratio_imresize(d_img, max_output=t_size)
           t_img = ops.aspect_ratio_imresize(t_img, max_output=t_size)

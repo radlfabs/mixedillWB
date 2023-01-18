@@ -20,7 +20,7 @@ def test_net(net, device, data_dir, model_name, out_dir, save_weights,
   """
   if wb_settings is None:
     wb_settings = ['D', 'S', 'T', 'F', 'C']
-  input_files = dataset.Data.load_files(data_dir)
+  input_files = dataset.Data.load_files(data_dir, mode='testing')
 
   if input_files == []:
     input_files = dataset.Data.load_files(data_dir, mode='testing')

@@ -1,4 +1,9 @@
 import numpy as np
+import os
+from os.path import isfile, join
+import sys
+sys.path.append(join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", "src"))
+sys.path.append(join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", "bilateral_solver"))
 import torch
 from PIL import Image
 import imresize

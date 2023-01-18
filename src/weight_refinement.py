@@ -4,10 +4,12 @@ from os.path import join
 import sys
 import numpy as np
 import torch
-sys.path.append(join(os.getcwd(),'mixedillWB','bilateral_solver'))
+sys.path.append(join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", "src"))
+sys.path.append(join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", "DeepWB", "utilities"))
+sys.path.append(join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", "DeepWB", "arch"))
+sys.path.append(join(os.getcwd(), "wb_algos", "Afifi", 'mixedillWB','bilateral_solver'))
 import bilateral_grid as bilateral_grid
 import bilateral_solver as solver
-sys.path.append(join(os.getcwd(),'mixedillWB','DeepWB', 'src'))
 import ops
 
 sns.set_style('white')
@@ -31,8 +33,9 @@ bs_params = {
 
 def process_image(reference, target, confidence=None, tensor=False):
     if confidence is None:
-        confidence = ops.imread(os.path.join('bilateral_solver',
-                                           'confidence.png'), gray=True)
+        confidence = ops.imread(join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", "bilateral_solver", 'confidence.png')
+            # os.path.join('bilateral_solver','confidence.png')
+            , gray=True)
 
     if tensor:
         gpu = reference.is_cuda
