@@ -56,8 +56,8 @@ class Data(Dataset):
       self.deepWB_T.load_state_dict(torch.load(os.path.join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", 'DeepWB/models/net_t.pth')))
       self.deepWB_S = dwb.deepWBnet()
       self.deepWB_S.load_state_dict(torch.load(os.path.join(os.getcwd(), "wb_algos", "Afifi", "mixedillWB", 'DeepWB/models/net_s.pth')))
-      self.deepWB_T.eval().to(device='cpu')
-      self.deepWB_S.eval().to(device='cpu')
+      self.deepWB_T.eval().to(device='cuda' if torch.cuda.is_available() else 'cpu')
+      self.deepWB_S.eval().to(device='cuda' if torch.cuda.is_available() else 'cpu')
 
 
     logging.info(f'Creating dataset with {len(self.imgfiles)} examples')
