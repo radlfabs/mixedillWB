@@ -145,9 +145,9 @@ class network(nn.Module):
         not_last = True
       for j, (res_blck, branch_blck) in enumerate(zip(res_blcks,
                                                       branch_blcks)):
-        if j == 0:
-          latent_x = latent_forward[k]
-        x_latent = res_blck(latent_x)
+        if j == 0:  # modified according to readme to fix bug where the decoder always has a single layer in depth
+          x_latent = latent_forward[k]
+        x_latent = res_blck(x_latent)
         if i > 0:
           x_latent = x_latent + latent_upscaled[j]
         if i == 0:
