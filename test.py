@@ -9,7 +9,7 @@ from src import dataset
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
 from src import weight_refinement as weight_refinement
-
+from tqdm import tqdm
 
 
 
@@ -52,7 +52,7 @@ def test_net(net, device, data_dir, model_name, out_dir, save_weights,
 
   with torch.no_grad():
 
-    for batch in test_set:
+    for batch in tqdm(test_set, desc="test_net"):
 
       img = batch['image']
 
