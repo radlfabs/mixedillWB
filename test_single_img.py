@@ -4,6 +4,7 @@ import torch
 from src import wb_net
 import os.path as path
 import os
+from PIL.Image import Image
 from src import ops
 from src import single_img_dataset
 from torch.utils.data import DataLoader
@@ -15,7 +16,7 @@ from tqdm import tqdm
 
 def single_test_net(net, device, input_files, model_name, save_weights,
              multi_scale=False, keep_aspect_ratio=False, t_size=128,
-             post_process=False, batch_size=32, wb_settings=None):
+             post_process=False, batch_size=32, wb_settings=None) -> tuple[Image, list[Image]]:
   """ Tests a trained network and saves the trained model in harddisk.
   """
   if wb_settings is None:
@@ -46,7 +47,7 @@ def single_test_net(net, device, input_files, model_name, save_weights,
 
   with torch.no_grad():
 
-    for batch in tqdm(test_set, desc="AfifiNet"):
+    for batch in tqdm(test_set, desc="AfifiNet",):
 
       img = batch['image']
 
