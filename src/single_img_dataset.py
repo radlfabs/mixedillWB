@@ -154,15 +154,12 @@ class Data(Dataset):
     f_img = ops.to_tensor(f_img, dims=3)
     c_img = ops.to_tensor(c_img, dims=3)
       
-    img = torch.cat((d_img, s_img, t_img), dim=0)
-    img = torch.cat((img, f_img), dim=0)
-    img = torch.cat((img, c_img), dim=0)
+    img = torch.cat((d_img, s_img, t_img, f_img, c_img), dim=0)
 
     full_size_img = ops.to_tensor(full_size_img, dims=3)
     full_size_s = ops.to_tensor(full_size_s, dims=3)
     full_size_t = ops.to_tensor(full_size_t, dims=3)
     full_size_c = ops.to_tensor(full_size_c, dims=3)
-
     full_size_f = ops.to_tensor(full_size_f, dims=3)
 
     return {'image': img, 'fs_d_img': full_size_img, 'fs_s_img':

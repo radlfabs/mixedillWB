@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader
 import torch.nn.functional as F
 from src import weight_refinement as weight_refinement
 from tqdm import tqdm
-
+from torchviz import make_dot
 
 
 def single_test_net(net, device, input_files, model_name, save_weights,
@@ -85,7 +85,7 @@ def single_test_net(net, device, input_files, model_name, save_weights,
       weights = F.interpolate(
         weights, size=(d_img.shape[2], d_img.shape[3]),
         mode='bilinear', align_corners=True)
-
+      
       if post_process:
         for i in range(weights.shape[1]):
           for j in range(weights.shape[0]):
@@ -95,12 +95,14 @@ def single_test_net(net, device, input_files, model_name, save_weights,
                                                              tensor=True)
             weights[j, i, :, :] = refined_weight
             weights = weights / torch.sum(weights, dim=1)
-
+      out_img_list = []
       for i in range(weights.shape[1]):
         if i == 0:
           out_img = torch.unsqueeze(weights[:, i, :, :], dim=1) * imgs[i]
+          out_img_list.append(torch.unsqueeze(weights[:, i, :, :], dim=1) * imgs[i])
         else:
           out_img += torch.unsqueeze(weights[:, i, :, :], dim=1) * imgs[i]
+          out_img_list.append(torch.unsqueeze(weights[:, i, :, :], dim=1) * imgs[i])
       result = ops.to_image(out_img.squeeze())
       
       weights_img = []
@@ -113,4 +115,4 @@ def single_test_net(net, device, input_files, model_name, save_weights,
           weights_img.append(weight)
 
   logging.info('End of testing')
-  return result, weights_img
+  return result, weights_img, [ops.to_image(img.squeeze()) for img in out_img_list]
