@@ -11,7 +11,6 @@ from torch.utils.data import DataLoader
 import torch.nn.functional as F
 from src import weight_refinement as weight_refinement
 from tqdm import tqdm
-from torchviz import make_dot
 
 
 def single_test_net(net, device, input_files, model_name, save_weights,
